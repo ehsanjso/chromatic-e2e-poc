@@ -1,21 +1,25 @@
 // @ts-check
 import { test, expect } from "@chromaui/test-archiver";
 
-test("has title", async ({ page }) => {
-  await page.goto("https://playwright.dev/");
+test("main page", async ({ page }) => {
+  await page.goto("https://main--elaborate-dusk-f37d8b.netlify.app/");
 
   // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  await expect(
+    page.getByRole("heading", { name: "I'm Main page" })
+  ).toBeVisible();
 });
 
-test("get started link", async ({ page }) => {
-  await page.goto("https://playwright.dev/");
-
-  // Click the get started link.
-  await page.getByRole("link", { name: "Get started" }).click();
+test("page 1", async ({ page }) => {
+  await page.goto("https://main--elaborate-dusk-f37d8b.netlify.app/page1");
 
   // Expects page to have a heading with the name of Installation.
-  await expect(
-    page.getByRole("heading", { name: "Installation" })
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "I'm Page 1" })).toBeVisible();
+});
+
+test("page 2", async ({ page }) => {
+  await page.goto("https://main--elaborate-dusk-f37d8b.netlify.app/page2");
+
+  // Expects page to have a heading with the name of Installation.
+  await expect(page.getByRole("heading", { name: "I'm Page 2" })).toBeVisible();
 });
